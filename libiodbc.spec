@@ -1,7 +1,7 @@
 Summary:	iODBC Driver Manager
 name:		libiodbc
 version:	2.50.2
-release:	1
+release:	2
 Group:		Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
@@ -54,6 +54,7 @@ Static version of iODBC libraries.
 %setup -q
 
 %build
+autoconf
 #automake
 %configure
 %{__make}
