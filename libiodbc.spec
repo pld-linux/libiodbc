@@ -1,44 +1,14 @@
-#
-#  libiodbc.spec
-#
-#  $Id: libiodbc.spec,v 1.1 1999-06-16 15:44:42 wiget Exp $
-#
-#  RPM specification file to build binary distribution set
-#
-#  (C)Copyright 1999 OpenLink Software.
-#  All Rights Reserved.
-#
-#  This library is free software; you can redistribute it and/or
-#  modify it under the terms of the GNU Library General Public
-#  License as published by the Free Software Foundation; either
-#  version 2 of the License, or (at your option) any later version.
-#
-#  This library is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-#  Library General Public License for more details.
-#
-#  You should have received a copy of the GNU Library General Public
-#  License along with this library; if not, write to the Free
-#  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-#
-
-# ----------------------------------------------------------------------
-# BASE PACKAGE
-# ----------------------------------------------------------------------
-Summary: iODBC Driver Manager
-name: libiodbc
-version: 2.50
-release: 2
-Group: Libraries
-Vendor: Ke Jin 
-Packager: OpenLink Software <iodbc@openlinksw.com>
-Copyright: LGPL
-URL: http://www.openlinksw.com/iodbc/
-Source: libiodbc-%{PACKAGE_VERSION}.tar.gz
-#Prefix: /
-BuildRoot:/tmp/libiodbc.root
-AutoReqProv: no
+Summary: 	iODBC Driver Manager
+name: 		libiodbc
+version: 	2.50.2
+release: 	1
+Group: 		Libraries
+Vendor: 	Ke Jin 
+Copyright: 	LGPL
+URL: 		http://www.openlinksw.com/iodbc/
+Source: 	libiodbc-%{PACKAGE_VERSION}.tar.gz
+BuildRoot:	/tmp/%{name}-%{version}-root
+#AutoReqProv: no
 
 %description
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -50,9 +20,9 @@ The iODBC Driver Manager was originally created by Ke Jin and is
 currently maintained by OpenLink Software under an LGPL license.
 
 %package devel
-Summary: header files and libraries for iODBC development
-Group: Development/Libraries
-Requires: libiodbc
+Summary: 	header files and libraries for iODBC development
+Group: 		Development/Libraries
+Requires: 	%{name} = %{version}
 
 %description devel
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -66,15 +36,26 @@ program that use the driver manager.
 The iODBC Driver Manager was originally created by Ke Jin and is 
 currently maintained by OpenLink Software under an LGPL license.
 
+%package static
+Summary:	Static version of iODBC libraries
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}
+
+%description static
+Static version of iODBC libraries.
+
 %prep
-%setup
+%setup -q
+
 %build
-./configure --prefix=/usr
+#automake
+%configure
 make
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install prefix=$RPM_BUILD_ROOT/usr
+make install \
+	DESTDIR=$RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/etc
 install -m644 odbc.ini.sample $RPM_BUILD_ROOT/etc/odbc.ini
 
@@ -84,14 +65,19 @@ rm -rf $RPM_BUILD_ROOT
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files 
-%attr(0644, root, root) /usr/lib/libiodbc.so.2.0.50
-%attr(0644, root, root) %config /etc/odbc.ini
+%files
+%defattr(644,root,root,755)
+%doc AUTHORS COPYING ChangeLog NEWS README
+%attr(755,root,root) /usr/lib/libiodbc.so.2.0.50
+%config %verify(not md5 size mtime) /etc/odbc.ini
 
 %files devel
-%attr(0644, root, root) %doc AUTHORS COPYING ChangeLog NEWS README
-%attr(0644, root, root) /usr/include/isql.h
-%attr(0644, root, root) /usr/include/isqlext.h
-%attr(0644, root, root) /usr/include/isqltypes.h
-%attr(0644, root, root) /usr/lib/libiodbc.so
-%attr(0644, root, root) /usr/lib/libiodbc.a
+%defattr(644,root,root,755)
+%{_includedir}/isql.h
+%{_includedir}/isqlext.h
+%{_includedir}/isqltypes.h
+%attr(755,root,root) %{_libdir}/libiodbc.so
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libiodbc.a
