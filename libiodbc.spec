@@ -1,14 +1,21 @@
 Summary:	iODBC Driver Manager
-name:		libiodbc
-version:	2.50.2
-release:	2
+Summary(pl):	Menad¿er driverów iODBC
+Name:		libiodbc
+Version:	2.50.2
+Release:	2
+License:	LGPL
 Group:		Libraries
+Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
+Group(pt_BR):	Bibliotecas
+Group(ru):	âÉÂÌÉÏÔÅËÉ
+Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Vendor:		Ke Jin 
-License:	LGPL
-URL:		http://www.openlinksw.com/iodbc/
-Source0:	libiodbc-%{PACKAGE_VERSION}.tar.gz
+Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
+URL:		http://www.iodbc.org/
+BuildRequires:	autoconf
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 #AutoReqProv:	no
 
@@ -21,11 +28,26 @@ appropriate backend drivers.
 The iODBC Driver Manager was originally created by Ke Jin and is
 currently maintained by OpenLink Software under an LGPL license.
 
+%description -l pl
+iODBC Driver Manager jest woln± implementacj± menad¿era driverów
+zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ aplikacje
+zgone z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami u¿ywaj±c
+w³±¶ciwych driverów backendowych.
+
+iODBC Driver Manager oryginalnie zosta³ napisany przez Ke Jina,
+aktualnie jest rozwijany przez OpenLink Software.
+
 %package devel
-Summary:	header files and libraries for iODBC development
+Summary:	Header files for iODBC development
+Summary(pl):	Pliki nag³ówkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
 
 %description devel
@@ -34,21 +56,36 @@ ODBC compliant driver manager which allows developers to write ODBC
 compliant applications that can connect to various databases using
 appropriate backend drivers.
 
-This package contains the header files and libraries needed to develop
-program that use the driver manager.
+This package contains the header files needed to develop program that
+use the driver manager.
 
-The iODBC Driver Manager was originally created by Ke Jin and is
-currently maintained by OpenLink Software under an LGPL license.
+%description devel -l pl
+iODBC Driver Manager jest woln± implementacj± menad¿era driverów
+zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ aplikacje
+zgone z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami u¿ywaj±c
+w³±¶ciwych driverów backendowych.
+
+Ten pakiet zawiera pliki nag³ówkowe potrzebne do budowania aplikacji
+korzystaj±cych z menad¿era driverów iODBC.
 
 %package static
 Summary:	Static version of iODBC libraries
+Summary(pl):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
+Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name}-devel = %{version}
 
 %description static
 Static version of iODBC libraries.
+
+%description static -l pl
+Statyczna wersja bibliotek iODBC.
 
 %prep
 %setup -q
