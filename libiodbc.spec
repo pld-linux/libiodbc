@@ -5,13 +5,6 @@ Version:	2.50.2
 Release:	2
 License:	LGPL
 Group:		Libraries
-Group(de):	Libraries
-Group(es):	Bibliotecas
-Group(fr):	Librairies
-Group(pl):	Biblioteki
-Group(pt_BR):	Bibliotecas
-Group(ru):	Библиотеки
-Group(uk):	Б╕бл╕отеки
 Vendor:		Ke Jin 
 Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
 URL:		http://www.iodbc.org/
@@ -41,13 +34,6 @@ aktualnie jest rozwijany przez OpenLink Software.
 Summary:	Header files for iODBC development
 Summary(pl):	Pliki nagЁСwkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -72,13 +58,6 @@ korzystaj╠cych z menad©era driverСw iODBC.
 Summary:	Static version of iODBC libraries
 Summary(pl):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
