@@ -7,6 +7,7 @@ License:	LGPL
 Group:		Libraries
 Vendor:		Ke Jin
 Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
+# Source0-md5:	771e1030848258668a7efe1897c71bf4
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
