@@ -56,7 +56,7 @@ Static version of iODBC libraries.
 %build
 #automake
 %configure
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
