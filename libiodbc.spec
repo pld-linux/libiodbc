@@ -7,7 +7,7 @@ Vendor: 	Ke Jin
 Copyright: 	LGPL
 URL: 		http://www.openlinksw.com/iodbc/
 Source: 	libiodbc-%{PACKAGE_VERSION}.tar.gz
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 #AutoReqProv: no
 
 %description
