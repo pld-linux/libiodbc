@@ -9,6 +9,8 @@ Vendor:		Ke Jin
 Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 #AutoReqProv:	no
 
@@ -70,8 +72,10 @@ Statyczna wersja bibliotek iODBC.
 %setup -q
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__automake}
 %{__autoconf}
-#automake
 %configure
 %{__make}
 
