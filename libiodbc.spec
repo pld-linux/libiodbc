@@ -73,16 +73,16 @@ Static version of iODBC libraries.
 Statyczna wersja bibliotek iODBC.
 
 %package gtk
-Summary:	GTK-based GUI for iODBC administration
-Summary(pl):	Oparty o GTK interfejs do administrowania iODBC
+Summary:	GTK+-based GUI for iODBC administration
+Summary(pl):	Oparty o GTK+ interfejs do administrowania iODBC
 Group:		X11/Applications
 Requires:	%{name} = %{version}
 
 %description gtk
-GTK-based GUI for iODBC administration.
+GTK+-based GUI for iODBC administration.
 
 %description gtk -l pl
-Oparty o GTK graficzny interfejs do administrowania iODBC.
+Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 
 %prep
 %setup -q
