@@ -5,7 +5,7 @@ Version:	2.50.2
 Release:	2
 License:	LGPL
 Group:		Libraries
-Vendor:		Ke Jin 
+Vendor:		Ke Jin
 Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf
