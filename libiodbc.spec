@@ -1,5 +1,5 @@
 Summary:	iODBC Driver Manager
-Summary(pl):	Menad¿er driverów iODBC
+Summary(pl):	Zarz±dca sterowników iODBC
 Name:		libiodbc
 Version:	2.50.2
 Release:	2
@@ -22,12 +22,12 @@ The iODBC Driver Manager was originally created by Ke Jin and is
 currently maintained by OpenLink Software under an LGPL license.
 
 %description -l pl
-iODBC Driver Manager jest woln± implementacj± menad¿era driverów
-zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ aplikacje
-zgone z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami u¿ywaj±c
-w³±¶ciwych driverów backendowych.
+Zarz±dca sterowników iODBC jest woln± implementacj± zarz±dcy
+sterowników zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ
+aplikacje zgodne z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami
+z wykorzystaniem w³a¶ciwych sterowników wewnêtrznych.
 
-iODBC Driver Manager oryginalnie zosta³ napisany przez Ke Jina,
+Zarz±dca sterowników iODBC pierwotnie zosta³ napisany przez Ke Jina,
 aktualnie jest rozwijany przez OpenLink Software.
 
 %package devel
@@ -46,13 +46,13 @@ This package contains the header files needed to develop program that
 use the driver manager.
 
 %description devel -l pl
-iODBC Driver Manager jest woln± implementacj± menad¿era driverów
-zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ aplikacje
-zgone z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami u¿ywaj±c
-w³±¶ciwych driverów backendowych.
+Zarz±dca sterowników iODBC jest woln± implementacj± zarz±dcy
+sterowników zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ
+aplikacje zgodne z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami
+z wykorzystaniem w³a¶ciwych sterowników wewnêtrznych.
 
 Ten pakiet zawiera pliki nag³ówkowe potrzebne do budowania aplikacji
-korzystaj±cych z menad¿era driverów iODBC.
+korzystaj±cych z zarz±dcy sterowników iODBC.
 
 %package static
 Summary:	Static version of iODBC libraries
@@ -84,8 +84,6 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
 install odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
 
-gzip -9nf AUTHORS ChangeLog NEWS README
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -99,7 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README
 %{_includedir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 
