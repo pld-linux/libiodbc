@@ -62,7 +62,7 @@ make
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}
 
-make install \
+%{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
