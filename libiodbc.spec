@@ -70,7 +70,7 @@ Statyczna wersja bibliotek iODBC.
 %setup -q
 
 %build
-autoconf
+%{__autoconf}
 #automake
 %configure
 %{__make}
