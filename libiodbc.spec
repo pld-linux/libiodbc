@@ -1,19 +1,22 @@
+#
+# Conditional build:
+# _without_gtk	- don't build iodbcadm and GUI elements in drvproxy
+#
 Summary:	iODBC Driver Manager
 Summary(pl):	Zarz±dca sterowników iODBC
 Name:		libiodbc
-Version:	2.50.2
-Release:	2
-License:	LGPL
+Version:	3.0.6
+Release:	1
+License:	LGPL or BSD
 Group:		Libraries
-Vendor:		Ke Jin
 Source0:	http://www.iodbc.org/dist/%{name}-%{version}.tar.gz
-# Source0-md5:	771e1030848258668a7efe1897c71bf4
+# Source0-md5:	73df10bef01e9615adc7e45ff8f29a00
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	gtk+-devel >= 1.2.3
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-#AutoReqProv:	no
 
 %description
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -69,6 +72,18 @@ Static version of iODBC libraries.
 %description static -l pl
 Statyczna wersja bibliotek iODBC.
 
+%package gtk
+Summary:	GTK-based GUI for iODBC administration
+Summary(pl):	Oparty o GTK interfejs do administrowania iODBC
+Group:		X11/Applications
+Requires:	%{name} = %{version}
+
+%description gtk
+GTK-based GUI for iODBC administration.
+
+%description gtk -l pl
+Oparty o GTK graficzny interfejs do administrowania iODBC.
+
 %prep
 %setup -q
 
@@ -77,7 +92,9 @@ Statyczna wersja bibliotek iODBC.
 %{__aclocal}
 %{__automake}
 %{__autoconf}
-%configure
+%configure \
+	%{?_without_gtk:--disable-gui}
+
 %{__make}
 
 %install
@@ -87,7 +104,12 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
+install etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
+
+# dlopened by lib*.so
+rm -f $RPM_BUILD_ROOT%{_libdir}/lib{iodbcadm,drvproxy}.{a,la}
+# build process side-effects
+rm -f $RPM_BUILD_ROOT%{_libdir}/lib{iodbcadm,drvproxy}-gtk.{a,la}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -95,17 +117,36 @@ rm -rf $RPM_BUILD_ROOT
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
+%post	gtk -p /sbin/ldconfig
+%postun	gtk -p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
-%config %verify(not md5 size mtime) %{_sysconfdir}/odbc.ini
+%doc AUTHORS ChangeLog LICENSE LICENSE.BSD NEWS README
+%attr(755,root,root) %{_libdir}/libiodbc.so.*.*.*
+%attr(755,root,root) %{_libdir}/libiodbcinst.so.*.*.*
+%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/odbc.ini
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
-%{_includedir}/*
-%attr(755,root,root) %{_libdir}/lib*.so
+%attr(755,root,root) %{_bindir}/iodbc-config
+%attr(755,root,root) %{_libdir}/libiodbc.so
+%attr(755,root,root) %{_libdir}/libiodbcinst.so
+%{_libdir}/libiodbc.la
+%{_libdir}/libiodbcinst.la
+%{_includedir}/*.h
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libiodbc.a
+%{_libdir}/libiodbcinst.a
+
+%if 0%{!?_without_gtk:1}
+%files gtk
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/iodbcadm-gtk
+%attr(755,root,root) %{_libdir}/libiodbcadm.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdrvproxy.so.*.*.*
+%attr(755,root,root) %{_libdir}/libiodbcadm.so
+%attr(755,root,root) %{_libdir}/libdrvproxy.so
+%endif
