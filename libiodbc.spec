@@ -141,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libiodbc.a
 %{_libdir}/libiodbcinst.a
 
-%if 0%{with gtk}
+%if %{with gtk}
 %files gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/iodbcadm-gtk
