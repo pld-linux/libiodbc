@@ -1,6 +1,6 @@
 #
 # Conditional build:
-# _without_gtk	- don't build iodbcadm and GUI elements in drvproxy
+%bcond_without gtk		# don't build iodbcadm and GUI elements in drvproxy
 #
 Summary:	iODBC Driver Manager
 Summary(pl):	Zarz±dca sterowników iODBC
@@ -40,7 +40,7 @@ aktualnie jest rozwijany przez OpenLink Software.
 Summary:	Header files for iODBC development
 Summary(pl):	Pliki nag³ówkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -64,7 +64,7 @@ korzystaj±cych z zarz±dcy sterowników iODBC.
 Summary:	Static version of iODBC libraries
 Summary(pl):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of iODBC libraries.
@@ -76,7 +76,7 @@ Statyczna wersja bibliotek iODBC.
 Summary:	GTK+-based GUI for iODBC administration
 Summary(pl):	Oparty o GTK+ interfejs do administrowania iODBC
 Group:		X11/Applications
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gtk
 GTK+-based GUI for iODBC administration.
@@ -93,7 +93,7 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 %{__automake}
 %{__autoconf}
 %configure \
-	%{?_without_gtk:--disable-gui}
+	%{!?with_gtk:--disable-gui}
 
 %{__make}
 
@@ -125,7 +125,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog LICENSE LICENSE.BSD NEWS README
 %attr(755,root,root) %{_libdir}/libiodbc.so.*.*.*
 %attr(755,root,root) %{_libdir}/libiodbcinst.so.*.*.*
-%config(noreplace) %verify(not md5 size mtime) %{_sysconfdir}/odbc.ini
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/odbc.ini
 
 %files devel
 %defattr(644,root,root,755)
@@ -141,7 +141,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libiodbc.a
 %{_libdir}/libiodbcinst.a
 
-%if 0%{!?_without_gtk:1}
+%if 0%{with gtk}
 %files gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/iodbcadm-gtk
