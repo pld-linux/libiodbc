@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without gtk		# don't build iodbcadm and GUI elements in drvproxy
+%bcond_without	gtk		# don't build iodbcadm and GUI elements in drvproxy
 #
 Summary:	iODBC Driver Manager
 Summary(pl):	Zarz±dca sterowników iODBC
