@@ -3,7 +3,7 @@
 %bcond_without	gtk		# don't build iodbcadm and GUI elements in drvproxy
 #
 Summary:	iODBC Driver Manager
-Summary(pl):	Zarz±dca sterowników iODBC
+Summary(pl.UTF-8):   ZarzÄ…dca sterownikÃ³w iODBC
 Name:		libiodbc
 Version:	3.51.1
 Release:	1
@@ -27,18 +27,18 @@ appropriate backend drivers.
 The iODBC Driver Manager was originally created by Ke Jin and is
 currently maintained by OpenLink Software under an LGPL license.
 
-%description -l pl
-Zarz±dca sterowników iODBC jest woln± implementacj± zarz±dcy
-sterowników zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ
-aplikacje zgodne z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami
-z wykorzystaniem w³a¶ciwych sterowników wewnêtrznych.
+%description -l pl.UTF-8
+ZarzÄ…dca sterownikÃ³w iODBC jest wolnÄ… implementacjÄ… zarzÄ…dcy
+sterownikÃ³w zgodnÄ… z SAG CLI i ODBC, pozwalajÄ…cÄ… programistom pisaÄ‡
+aplikacje zgodne z ODBC, ktÃ³re mogÄ… Å‚Ä…czyÄ‡ siÄ™ z rÃ³Å¼nymi bazami
+z wykorzystaniem wÅ‚aÅ›ciwych sterownikÃ³w wewnÄ™trznych.
 
-Zarz±dca sterowników iODBC pierwotnie zosta³ napisany przez Ke Jina,
+ZarzÄ…dca sterownikÃ³w iODBC pierwotnie zostaÅ‚ napisany przez Ke Jina,
 aktualnie jest rozwijany przez OpenLink Software.
 
 %package devel
 Summary:	Header files for iODBC development
-Summary(pl):	Pliki nag³ówkowe do rozwoju aplikacji na iODBC
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -51,37 +51,37 @@ appropriate backend drivers.
 This package contains the header files needed to develop program that
 use the driver manager.
 
-%description devel -l pl
-Zarz±dca sterowników iODBC jest woln± implementacj± zarz±dcy
-sterowników zgodn± z SAG CLI i ODBC, pozwalaj±c± programistom pisaæ
-aplikacje zgodne z ODBC, które mog± ³±czyæ siê z ró¿nymi bazami
-z wykorzystaniem w³a¶ciwych sterowników wewnêtrznych.
+%description devel -l pl.UTF-8
+ZarzÄ…dca sterownikÃ³w iODBC jest wolnÄ… implementacjÄ… zarzÄ…dcy
+sterownikÃ³w zgodnÄ… z SAG CLI i ODBC, pozwalajÄ…cÄ… programistom pisaÄ‡
+aplikacje zgodne z ODBC, ktÃ³re mogÄ… Å‚Ä…czyÄ‡ siÄ™ z rÃ³Å¼nymi bazami
+z wykorzystaniem wÅ‚aÅ›ciwych sterownikÃ³w wewnÄ™trznych.
 
-Ten pakiet zawiera pliki nag³ówkowe potrzebne do budowania aplikacji
-korzystaj±cych z zarz±dcy sterowników iODBC.
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe potrzebne do budowania aplikacji
+korzystajÄ…cych z zarzÄ…dcy sterownikÃ³w iODBC.
 
 %package static
 Summary:	Static version of iODBC libraries
-Summary(pl):	Statyczna wersja bibliotek iODBC
+Summary(pl.UTF-8):   Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static version of iODBC libraries.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna wersja bibliotek iODBC.
 
 %package gtk
 Summary:	GTK+-based GUI for iODBC administration
-Summary(pl):	Oparty o GTK+ interfejs do administrowania iODBC
+Summary(pl.UTF-8):   Oparty o GTK+ interfejs do administrowania iODBC
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
 %description gtk
 GTK+-based GUI for iODBC administration.
 
-%description gtk -l pl
+%description gtk -l pl.UTF-8
 Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 
 %prep
