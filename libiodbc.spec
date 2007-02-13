@@ -3,7 +3,7 @@
 %bcond_without	gtk		# don't build iodbcadm and GUI elements in drvproxy
 #
 Summary:	iODBC Driver Manager
-Summary(pl.UTF-8):   Zarządca sterowników iODBC
+Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
 Version:	3.51.1
 Release:	1
@@ -38,7 +38,7 @@ aktualnie jest rozwijany przez OpenLink Software.
 
 %package devel
 Summary:	Header files for iODBC development
-Summary(pl.UTF-8):   Pliki nagłówkowe do rozwoju aplikacji na iODBC
+Summary(pl.UTF-8):	Pliki nagłówkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -62,7 +62,7 @@ korzystających z zarządcy sterowników iODBC.
 
 %package static
 Summary:	Static version of iODBC libraries
-Summary(pl.UTF-8):   Statyczna wersja bibliotek iODBC
+Summary(pl.UTF-8):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
@@ -74,7 +74,7 @@ Statyczna wersja bibliotek iODBC.
 
 %package gtk
 Summary:	GTK+-based GUI for iODBC administration
-Summary(pl.UTF-8):   Oparty o GTK+ interfejs do administrowania iODBC
+Summary(pl.UTF-8):	Oparty o GTK+ interfejs do administrowania iODBC
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
