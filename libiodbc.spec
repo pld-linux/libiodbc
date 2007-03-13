@@ -144,7 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libiodbcinst.la
 %{_includedir}/*.h
 %{_pkgconfigdir}/libiodbc.pc
-%doc %{_mandir}/man1/iodbc-config.1*
+%{_mandir}/man1/iodbc-config.1*
 
 %files static
 %defattr(644,root,root,755)
@@ -159,5 +159,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libdrvproxy.so.*.*.*
 %attr(755,root,root) %{_libdir}/libiodbcadm.so
 %attr(755,root,root) %{_libdir}/libdrvproxy.so
-%doc %{_mandir}/man1/iodbcadm-gtk.1*
+%{_mandir}/man1/iodbcadm-gtk.1*
 %endif
