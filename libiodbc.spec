@@ -1,3 +1,14 @@
+# TODO:
+#	Installed (but unpackaged) file(s) found:
+#	   /usr/bin/iodbctest
+#	   /usr/bin/iodbctestw
+#	   /usr/lib/pkgconfig/libiodbc.pc
+#	   /usr/share/libiodbc/samples/Makefile
+#	   /usr/share/libiodbc/samples/iodbctest.c
+#	   /usr/share/man/man1/iodbc-config.1.gz
+#	   /usr/share/man/man1/iodbcadm-gtk.1.gz
+#	   /usr/share/man/man1/iodbctest.1.gz
+#	   /usr/share/man/man1/iodbctestw.1
 #
 # Conditional build:
 %bcond_without	gtk		# don't build iodbcadm and GUI elements in drvproxy
