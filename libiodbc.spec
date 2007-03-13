@@ -2,11 +2,8 @@
 #	Installed (but unpackaged) file(s) found:
 #	   /usr/bin/iodbctest
 #	   /usr/bin/iodbctestw
-#	   /usr/lib/pkgconfig/libiodbc.pc
 #	   /usr/share/libiodbc/samples/Makefile
 #	   /usr/share/libiodbc/samples/iodbctest.c
-#	   /usr/share/man/man1/iodbc-config.1.gz
-#	   /usr/share/man/man1/iodbcadm-gtk.1.gz
 #	   /usr/share/man/man1/iodbctest.1.gz
 #	   /usr/share/man/man1/iodbctestw.1
 #
@@ -146,6 +143,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libiodbc.la
 %{_libdir}/libiodbcinst.la
 %{_includedir}/*.h
+%{_pkgconfigdir}/libiodbc.pc
+%doc %{_mandir}/man1/iodbc-config.1*
 
 %files static
 %defattr(644,root,root,755)
@@ -160,4 +159,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libdrvproxy.so.*.*.*
 %attr(755,root,root) %{_libdir}/libiodbcadm.so
 %attr(755,root,root) %{_libdir}/libdrvproxy.so
+%doc %{_mandir}/man1/iodbcadm-gtk.1*
 %endif
