@@ -13,16 +13,17 @@
 Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
-Version:	3.52.5
+Version:	3.52.6
 Release:	0.1
-License:	LGPL or BSD
+License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
-# Source0-md5:	550234c4f9fbaf45e6e5d74c460dff0d
+# Source0-md5:	761ad547467bd63ac0b2b4f3ee4b5afb
 URL:		http://www.iodbc.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	gtk+-devel >= 1.2.3
+BuildRequires:	autoconf >= 2.57
+BuildRequires:	automake >= 1.4p5
+BuildRequires:	gtk+2-devel >= 1:2.0.0
+BuildRequires:	pkgconfig
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -97,8 +98,9 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 
 %build
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I admin
 %{__automake}
+%{__autoheader}
 %{__autoconf}
 %configure \
 	%{!?with_gtk:--disable-gui}
