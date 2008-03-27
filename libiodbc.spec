@@ -19,6 +19,7 @@ License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
 # Source0-md5:	761ad547467bd63ac0b2b4f3ee4b5afb
+Patch0:		%{name}-make-jN.patch
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1.4p5
@@ -95,6 +96,7 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
