@@ -1,11 +1,3 @@
-# TODO:
-#	Installed (but unpackaged) file(s) found:
-#	   /usr/bin/iodbctest
-#	   /usr/bin/iodbctestw
-#	   /usr/share/libiodbc/samples/Makefile
-#	   /usr/share/libiodbc/samples/iodbctest.c
-#	   /usr/share/man/man1/iodbctest.1.gz
-#	   /usr/share/man/man1/iodbctestw.1
 #
 # Conditional build:
 %bcond_without	gtk		# don't build iodbcadm and GUI elements in drvproxy
@@ -14,18 +6,19 @@ Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
 Version:	3.52.6
-Release:	0.1
+Release:	1
 License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
 # Source0-md5:	761ad547467bd63ac0b2b4f3ee4b5afb
 Patch0:		%{name}-make-jN.patch
+Patch1:		%{name}-build.patch
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf >= 2.57
 BuildRequires:	automake >= 1.4p5
 BuildRequires:	gtk+2-devel >= 1:2.0.0
-BuildRequires:	pkgconfig
 BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -97,6 +90,7 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -117,6 +111,7 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}
 	DESTDIR=$RPM_BUILD_ROOT
 
 install etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
+rm -rf $RPM_BUILD_ROOT/usr/share/libiodbc/samples/
 
 # dlopened by lib*.so
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib{iodbcadm,drvproxy}.{a,la}
@@ -135,9 +130,15 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog LICENSE LICENSE.BSD NEWS README
-%attr(755,root,root) %{_libdir}/libiodbc.so.*.*.*
-%attr(755,root,root) %{_libdir}/libiodbcinst.so.*.*.*
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/odbc.ini
+%attr(755,root,root) %{_bindir}/iodbctest
+%attr(755,root,root) %{_bindir}/iodbctestw
+%attr(755,root,root) %{_libdir}/libiodbc.so.2.*.*
+%attr(755,root,root) %ghost %{_libdir}/libiodbc.so.2
+%attr(755,root,root) %{_libdir}/libiodbcinst.so.2.*.*
+%attr(755,root,root) %ghost %{_libdir}/libiodbcinst.so.2
+%{_mandir}/man1/iodbctest.1*
+%{_mandir}/man1/iodbctestw.1
 
 %files devel
 %defattr(644,root,root,755)
@@ -159,8 +160,10 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/iodbcadm-gtk
-%attr(755,root,root) %{_libdir}/libiodbcadm.so.*.*.*
-%attr(755,root,root) %{_libdir}/libdrvproxy.so.*.*.*
+%attr(755,root,root) %{_libdir}/libiodbcadm.so.2.*.*
+%attr(755,root,root) %ghost %{_libdir}/libiodbcadm.so.2
+%attr(755,root,root) %{_libdir}/libdrvproxy.so.2.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdrvproxy.so.2
 %attr(755,root,root) %{_libdir}/libiodbcadm.so
 %attr(755,root,root) %{_libdir}/libdrvproxy.so
 %{_mandir}/man1/iodbcadm-gtk.1*
