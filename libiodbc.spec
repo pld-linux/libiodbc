@@ -5,12 +5,12 @@
 Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
-Version:	3.52.6
+Version:	3.52.7
 Release:	1
 License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
-# Source0-md5:	761ad547467bd63ac0b2b4f3ee4b5afb
+# Source0-md5:	ddbd274cb31d65be6a78da58fc09079a
 Patch0:		%{name}-make-jN.patch
 Patch1:		%{name}-build.patch
 URL:		http://www.iodbc.org/

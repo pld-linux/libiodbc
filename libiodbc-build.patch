@@ -1,12 +1,11 @@
-diff -Nur libiodbc-3.52.6-orig/iodbcinst/unicode.h libiodbc-3.52.6/iodbcinst/unicode.h
---- libiodbc-3.52.6-orig/iodbcinst/unicode.h	2006-01-20 16:58:35.000000000 +0100
-+++ libiodbc-3.52.6/iodbcinst/unicode.h	2009-09-09 15:42:37.000000000 +0200
-@@ -77,6 +77,8 @@
- #ifndef _UNICODE_H
- #define _UNICODE_H
+--- libiodbc-3.52.7/iodbcinst/unicode.h.orig	2009-09-09 14:13:17.000000000 +0200
++++ libiodbc-3.52.7/iodbcinst/unicode.h	2009-10-31 10:15:44.000000000 +0100
+@@ -89,6 +89,8 @@
+ #define HAVE_TOWLOWER
+ #endif
  
 +#include "config.h"
 +
- #if HAVE_WCHAR_H
+ #if defined (HAVE_WCHAR_H)
  #include <wchar.h>
  #endif
