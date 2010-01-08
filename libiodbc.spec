@@ -6,7 +6,7 @@ Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
 Version:	3.52.7
-Release:	1
+Release:	2
 License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
@@ -19,6 +19,7 @@ BuildRequires:	automake >= 1.4p5
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+Conflicts:	unixODBC
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,6 +45,7 @@ Summary:	Header files for iODBC development
 Summary(pl.UTF-8):	Pliki nagłówkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Conflicts:	unixODBC-devel
 
 %description devel
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -68,6 +70,7 @@ Summary:	Static version of iODBC libraries
 Summary(pl.UTF-8):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
+Conflicts:	unixODBC-static
 
 %description static
 Static version of iODBC libraries.
