@@ -6,7 +6,7 @@ Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
 Version:	3.52.7
-Release:	2
+Release:	3
 License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
@@ -19,7 +19,6 @@ BuildRequires:	automake >= 1.4p5
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
-Conflicts:	unixODBC
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,7 +44,6 @@ Summary:	Header files for iODBC development
 Summary(pl.UTF-8):	Pliki nagłówkowe do rozwoju aplikacji na iODBC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Conflicts:	unixODBC-devel
 
 %description devel
 The iODBC Driver Manager is a free implementation of the SAG CLI and
@@ -70,7 +68,6 @@ Summary:	Static version of iODBC libraries
 Summary(pl.UTF-8):	Statyczna wersja bibliotek iODBC
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
-Conflicts:	unixODBC-static
 
 %description static
 Static version of iODBC libraries.
@@ -102,18 +99,19 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 %{__autoheader}
 %{__autoconf}
 %configure \
+	--with-layout=gentoo
 	%{!?with_gtk:--disable-gui}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/iodbc
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/odbc.ini
+install etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/iodbc/odbc.ini
 rm -rf $RPM_BUILD_ROOT/usr/share/libiodbc/samples/
 
 # dlopened by lib*.so
@@ -133,7 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog LICENSE LICENSE.BSD NEWS README
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/odbc.ini
+%dir %{_sysconfdir}/iodbc
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/iodbc/odbc.ini
 %attr(755,root,root) %{_bindir}/iodbctest
 %attr(755,root,root) %{_bindir}/iodbctestw
 %attr(755,root,root) %{_libdir}/libiodbc.so.2.*.*
@@ -150,7 +149,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libiodbcinst.so
 %{_libdir}/libiodbc.la
 %{_libdir}/libiodbcinst.la
-%{_includedir}/*.h
+%{_includedir}/iodbc
 %{_pkgconfigdir}/libiodbc.pc
 %{_mandir}/man1/iodbc-config.1*
 
