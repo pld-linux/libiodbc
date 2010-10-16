@@ -14,8 +14,8 @@ Source0:	http://www.iodbc.org/downloads/iODBC/%{name}-%{version}.tar.gz
 Patch0:		%{name}-make-jN.patch
 Patch1:		%{name}-build.patch
 URL:		http://www.iodbc.org/
-BuildRequires:	autoconf >= 2.57
-BuildRequires:	automake >= 1.4p5
+BuildRequires:	autoconf >= 2.59
+BuildRequires:	automake >= 1:1.9.2
 BuildRequires:	gtk+2-devel >= 1:2.0.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
