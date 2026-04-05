@@ -1,9 +1,9 @@
---- libiodbc-3.52.7/iodbcinst/unicode.h.orig	2009-09-09 14:13:17.000000000 +0200
-+++ libiodbc-3.52.7/iodbcinst/unicode.h	2009-10-31 10:15:44.000000000 +0100
-@@ -89,6 +89,8 @@
- #define HAVE_TOWLOWER
- #endif
- 
+--- libiodbc-3.52.16/iodbcinst/unicode.h.orig	2023-05-02 12:00:00.000000000 +0200
++++ libiodbc-3.52.16/iodbcinst/unicode.h	2023-05-02 12:00:01.000000000 +0200
+@@ -80,6 +80,8 @@
+ #include <iodbc.h>
+ #include <iodbcext.h>
+
 +#include "config.h"
 +
  #if defined (HAVE_WCHAR_H)
