@@ -6,13 +6,14 @@ Summary:	iODBC Driver Manager
 Summary(pl.UTF-8):	Zarządca sterowników iODBC
 Name:		libiodbc
 Version:	3.52.16
-Release:	4
+Release:	5
 License:	LGPL v2 or BSD
 Group:		Libraries
 Source0:	https://github.com/openlink/iODBC/releases/download/v%{version}/%{name}-%{version}.tar.gz
 # Source0-md5:	da398387730c8e069a391cdb8a51c82e
 Patch0:		%{name}-build.patch
 Patch1:		%{name}-c23.patch
+Patch2:		stdint.patch
 URL:		http://www.iodbc.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9.2
@@ -33,8 +34,8 @@ currently maintained by OpenLink Software under an LGPL license.
 %description -l pl.UTF-8
 Zarządca sterowników iODBC jest wolną implementacją zarządcy
 sterowników zgodną z SAG CLI i ODBC, pozwalającą programistom pisać
-aplikacje zgodne z ODBC, które mogą łączyć się z różnymi bazami
-z wykorzystaniem właściwych sterowników wewnętrznych.
+aplikacje zgodne z ODBC, które mogą łączyć się z różnymi bazami z
+wykorzystaniem właściwych sterowników wewnętrznych.
 
 Zarządca sterowników iODBC pierwotnie został napisany przez Ke Jina,
 aktualnie jest rozwijany przez OpenLink Software.
@@ -57,8 +58,8 @@ use the driver manager.
 %description devel -l pl.UTF-8
 Zarządca sterowników iODBC jest wolną implementacją zarządcy
 sterowników zgodną z SAG CLI i ODBC, pozwalającą programistom pisać
-aplikacje zgodne z ODBC, które mogą łączyć się z różnymi bazami
-z wykorzystaniem właściwych sterowników wewnętrznych.
+aplikacje zgodne z ODBC, które mogą łączyć się z różnymi bazami z
+wykorzystaniem właściwych sterowników wewnętrznych.
 
 Ten pakiet zawiera pliki nagłówkowe potrzebne do budowania aplikacji
 korzystających z zarządcy sterowników iODBC.
@@ -91,6 +92,7 @@ Oparty o GTK+ graficzny interfejs do administrowania iODBC.
 %setup -q
 %patch -P0 -p1
 %patch -P1 -p1
+%patch -P2 -p1
 
 %build
 %{__libtoolize}
@@ -111,8 +113,8 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/iodbc
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/iodbc/odbc.ini
-rm -rf $RPM_BUILD_ROOT/usr/share/libiodbc/samples/
+cp -p etc/odbc.ini.sample $RPM_BUILD_ROOT%{_sysconfdir}/iodbc/odbc.ini
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/libiodbc/samples/
 
 # dlopened by lib*.so
 rm -f $RPM_BUILD_ROOT%{_libdir}/lib{iodbcadm,drvproxy}.{a,la}
@@ -135,18 +137,18 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/iodbc/odbc.ini
 %attr(755,root,root) %{_bindir}/iodbctest
 %attr(755,root,root) %{_bindir}/iodbctestw
-%attr(755,root,root) %{_libdir}/libiodbc.so.2.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiodbc.so.2
-%attr(755,root,root) %{_libdir}/libiodbcinst.so.2.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiodbcinst.so.2
+%{_libdir}/libiodbc.so.2.*.*
+%ghost %{_libdir}/libiodbc.so.2
+%{_libdir}/libiodbcinst.so.2.*.*
+%ghost %{_libdir}/libiodbcinst.so.2
 %{_mandir}/man1/iodbctest.1*
 %{_mandir}/man1/iodbctestw.1
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/iodbc-config
-%attr(755,root,root) %{_libdir}/libiodbc.so
-%attr(755,root,root) %{_libdir}/libiodbcinst.so
+%{_libdir}/libiodbc.so
+%{_libdir}/libiodbcinst.so
 %{_libdir}/libiodbc.la
 %{_libdir}/libiodbcinst.la
 %{_includedir}/iodbc
@@ -162,11 +164,11 @@ rm -rf $RPM_BUILD_ROOT
 %files gtk
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/iodbcadm-gtk
-%attr(755,root,root) %{_libdir}/libiodbcadm.so.2.*.*
-%attr(755,root,root) %ghost %{_libdir}/libiodbcadm.so.2
-%attr(755,root,root) %{_libdir}/libdrvproxy.so.2.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdrvproxy.so.2
-%attr(755,root,root) %{_libdir}/libiodbcadm.so
-%attr(755,root,root) %{_libdir}/libdrvproxy.so
+%{_libdir}/libiodbcadm.so.2.*.*
+%ghost %{_libdir}/libiodbcadm.so.2
+%{_libdir}/libdrvproxy.so.2.*.*
+%ghost %{_libdir}/libdrvproxy.so.2
+%{_libdir}/libiodbcadm.so
+%{_libdir}/libdrvproxy.so
 %{_mandir}/man1/iodbcadm-gtk.1*
 %endif
